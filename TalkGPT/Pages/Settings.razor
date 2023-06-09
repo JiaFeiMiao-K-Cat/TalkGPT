@@ -1,0 +1,51 @@
+﻿@inject SDKSettingsService _sdkSettings;
+@inject GPTSDK _gptSDK;
+@inject AzureSpeechSDK _speechSDK;
+@page "/settings"
+
+<div>
+    <Card>
+        <Extra>
+            <Button Type="@ButtonType.Primary" OnClick="@SaveAsync">保存</Button>
+        </Extra>
+        <CardTabs>
+            <Tabs Animated>
+                <TabPane Tab="GPT" Key="1">
+                    <Input @bind-Value="@_sdkSettings.SDKSettings.GPTEndpoint">
+                        <AddOnBefore>Endpoint</AddOnBefore>
+                    </Input>
+                    <InputPassword @bind-Value="@_sdkSettings.SDKSettings.GPTKey">
+                        <AddOnBefore>Key</AddOnBefore>
+                    </InputPassword>
+                    <Input @bind-Value="@_sdkSettings.SDKSettings.GPTEngine">
+                        <AddOnBefore>Engine</AddOnBefore>
+                    </Input>
+                    <Input @bind-Value="@_sdkSettings.SDKSettings.MaxTokens">
+                        <AddOnBefore>MaxTokens</AddOnBefore>
+                    </Input>
+                </TabPane>
+                <TabPane Tab="TTS" Key="2">
+                    <Switch @bind-Checked="@_sdkSettings.SDKSettings.EnableTTS">
+                        <CheckedChildrenTemplate>
+                            TTS启用
+                            <Icon Type="check"></Icon>
+                        </CheckedChildrenTemplate>
+                        <UnCheckedChildrenTemplate>
+                            TTS关闭
+                            <Icon Type="close"></Icon>
+                        </UnCheckedChildrenTemplate>
+                    </Switch>
+                    <Input @bind-Value="@_sdkSettings.SDKSettings.SpeechRegion">
+                        <AddOnBefore>Region</AddOnBefore>
+                    </Input>
+                    <InputPassword @bind-Value="@_sdkSettings.SDKSettings.SpeechKey">
+                        <AddOnBefore>Key</AddOnBefore>
+                        </InputPassword>
+                    <Input @bind-Value="@_sdkSettings.SDKSettings.SpeechSynthesisVoiceName">
+                        <AddOnBefore>Voice</AddOnBefore>
+                    </Input>
+                </TabPane>
+            </Tabs>
+        </CardTabs>
+    </Card>
+</div>
