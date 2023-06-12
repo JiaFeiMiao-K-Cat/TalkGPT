@@ -28,8 +28,9 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddAntDesign();
+        builder.Services.AddBootstrapBlazor();
 
-		Debug.WriteLine("");
+        Debug.WriteLine("");
 		Debug.WriteLine(FileSystem.AppDataDirectory);
         Debug.WriteLine("");
 

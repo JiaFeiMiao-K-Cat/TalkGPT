@@ -9,7 +9,7 @@
 
 <div>
     <Spin Spinning="@loading">
-        <AntList DataSource="@_gptSDK.Messages" TItem="ChatMessage" Size="large" Bordered>
+        <AntList DataSource="@_gptSDK.Messages" TItem="NewChatMessage" Size="large" Bordered>
             <ChildContent>
                 @if (context.Role == ChatRole.System)
                 {
@@ -19,7 +19,7 @@
                                 @context.Role
                             </TitleTemplate>
                             <DescriptionTemplate>
-                                <p style="white-space: pre-line">@context.Content</p>
+                                <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
                             </DescriptionTemplate>
                         </ListItemMeta>
                     </ListItem>
@@ -32,7 +32,7 @@
                                 @context.Role
                             </TitleTemplate>
                             <DescriptionTemplate>
-                                <p style="white-space: pre-line">@context.Content</p>
+                                <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
                             </DescriptionTemplate>
                         </ListItemMeta>
                     </ListItem>
@@ -45,7 +45,7 @@
                                 @context.Role
                             </TitleTemplate>
                             <DescriptionTemplate>
-                                <p style="white-space: pre-line">@context.Content</p>
+                                <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
                             </DescriptionTemplate>
                         </ListItemMeta>
                     </ListItem>
@@ -70,18 +70,4 @@
     RenderFragment systemAvatar = @<Avatar Size="large" Icon="setting" Style="color: #87d068; background-color: #e8e9ee"></Avatar>;
     RenderFragment userAvatar = @<Avatar Size="large" Icon="user" Style="color: #f56a00; background-color:#fde3cf;"></Avatar>;
     RenderFragment assistantAvatar = @<Avatar Size="large" Icon="robot" Style="color: #1890ff; background-color: #b1dbc7"></Avatar>;
-}
-
-@code{
-    public class MySettings
-    {
-        public int KeyOne { get; set; }
-        public bool KeyTwo { get; set; }
-        public NestedSettings KeyThree { get; set; } = null!;
-    }
-
-    public class NestedSettings
-    {
-        public string Message { get; set; } = null!;
-    }
 }
