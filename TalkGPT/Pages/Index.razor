@@ -9,13 +9,15 @@
 
 <div>
     <Spin Spinning="@loading">
-        <AntList DataSource="@_gptSDK.Messages" TItem="NewChatMessage" Size="large" Bordered>
+        <AntList DataSource="@_gptSDK.Messages" TItem="NewChatMessage" Size="large">
             <ChildContent>
                 @if (context.Role == ChatRole.System)
                 {
                     <ListItem Style="background-color: #e8e9ee">
-                        <ListItemMeta AvatarTemplate="systemAvatar">
+                        <ListItemMeta>
                             <TitleTemplate>
+                                <Avatar Icon="setting" Style="color: #87d068; background-color: #e8e9ee"></Avatar>
+                                <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
@@ -31,8 +33,10 @@
                 else if (context.Role == ChatRole.User)
                 {
                     <ListItem Style="background-color: #fde3cf">
-                        <ListItemMeta AvatarTemplate="userAvatar">
+                        <ListItemMeta>
                             <TitleTemplate>
+                                <Avatar Icon="user" Style="color: #f56a00; background-color:#fde3cf;"></Avatar>
+                                <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
@@ -48,8 +52,10 @@
                 else
                 {
                     <ListItem Style="background-color: #b1dbc7">
-                        <ListItemMeta AvatarTemplate="assistantAvatar">
+                        <ListItemMeta>
                             <TitleTemplate>
+                                <Avatar Icon="robot" Style="color: #1890ff; background-color: #b1dbc7"></Avatar>
+                                <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
@@ -77,9 +83,3 @@
         <!-- <TextArea ReadOnly AutoSize @bind-Value="@AnswerText"></TextArea> -->
     </Spin>
 </div>
-
-@code {
-    RenderFragment systemAvatar = @<Avatar Size="large" Icon="setting" Style="color: #87d068; background-color: #e8e9ee"></Avatar>;
-    RenderFragment userAvatar = @<Avatar Size="large" Icon="user" Style="color: #f56a00; background-color:#fde3cf;"></Avatar>;
-    RenderFragment assistantAvatar = @<Avatar Size="large" Icon="robot" Style="color: #1890ff; background-color: #b1dbc7"></Avatar>;
-}

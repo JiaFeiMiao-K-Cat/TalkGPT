@@ -19,7 +19,7 @@
         <ApplicationIdGuid>53BCD5DD-92F1-4949-A402-4572E14A6A03</ApplicationIdGuid>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.1.1</ApplicationDisplayVersion>
+        <ApplicationDisplayVersion>1.1.2</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">28.0</SupportedOSPlatformVersion>
