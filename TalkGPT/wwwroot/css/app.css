@@ -4,6 +4,23 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.newcard .listview-body {
+    padding: 0 !important;
+}
+
+.newcard .listview-item {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.newcard .card-header {
+    --bs-card-border-radius: 0 !important;
+}
+
+.newcard .card-body {
+    padding: 0 !important;
+}
+
 h1:focus {
     outline: none;
 }

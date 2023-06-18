@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TalkGPT.Utils;
 using static Microsoft.Maui.ApplicationModel.Permissions;
 
 namespace TalkGPT.Pages
@@ -20,9 +21,6 @@ namespace TalkGPT.Pages
 
         public string ProblemText { get; set; }
         public string AnswerText { get; set; }
-
-        private ElementReference myrefA;
-        private ElementReference myrefB;
 
         bool loading = false;
 
@@ -88,7 +86,6 @@ namespace TalkGPT.Pages
                 });
             }
         }*/
-
         async void GetAnswer()
         {
             loading = true;
@@ -111,9 +108,6 @@ namespace TalkGPT.Pages
                 });
             }
             ProblemText = string.Empty;
-            await myrefA.FocusAsync();
-            StateHasChanged();
-            await myrefB.FocusAsync();
             loading = false;
             StateHasChanged();
         }

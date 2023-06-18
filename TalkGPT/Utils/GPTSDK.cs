@@ -54,7 +54,7 @@ namespace TalkGPT.Utils
         public async Task<string> Answer(string prompt)
         {
             Messages.Add(new NewChatMessage(ChatRole.User, prompt));
-            //Messages.Add(new ChatMessage(ChatRole.Assistant, prompt));
+            //Messages.Add(new NewChatMessage(ChatRole.Assistant, prompt));
             //return prompt;
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {

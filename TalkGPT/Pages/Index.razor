@@ -7,79 +7,89 @@
 @inject SDKSettingsService _sdkSettings;
 @page "/"
 
-<div>
-    <Spin Spinning="@loading">
-        <AntList DataSource="@_gptSDK.Messages" TItem="NewChatMessage" Size="large">
-            <ChildContent>
-                @if (context.Role == ChatRole.System)
-                {
-                    <ListItem Style="background-color: #e8e9ee">
-                        <ListItemMeta>
-                            <TitleTemplate>
-                                <Avatar Icon="setting" Style="color: #87d068; background-color: #e8e9ee"></Avatar>
+<style></style>
+
+<Spin Spinning="@loading">
+    <Layout Style="height:96vh">
+        <Content>
+            <BootstrapBlazor.Components.ListView Items="@_gptSDK.Messages" TItem="NewChatMessage" class="newcard">
+                <BodyTemplate>
+                    @if (context.Role == ChatRole.System)
+                    {
+                        <BootstrapBlazor.Components.Card Style="background-color: #e8e9ee; ">
+                            <HeaderTemplate>
+                                <BootstrapBlazor.Components.Avatar IsCircle="true"
+                                                                   IsIcon="true"
+                                                                   Size="BootstrapBlazor.Components.Size.ExtraSmall"
+                                                                   Icon="fa-solid fa-cog"
+                                                                   Style="color: #87d068; background-color: #e8e9ee" />
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Button OnClick="() => Clipboard.Default.SetTextAsync(context.NewContent)">Cpoy</Button>
-                            </TitleTemplate>
-                            <DescriptionTemplate>
+                            </HeaderTemplate>
+                            <BodyTemplate>
                                 <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
-                            </DescriptionTemplate>
-                        </ListItemMeta>
-                    </ListItem>
-                }
-                else if (context.Role == ChatRole.User)
-                {
-                    <ListItem Style="background-color: #fde3cf">
-                        <ListItemMeta>
-                            <TitleTemplate>
-                                <Avatar Icon="user" Style="color: #f56a00; background-color:#fde3cf;"></Avatar>
+                            </BodyTemplate>
+                        </BootstrapBlazor.Components.Card>
+                    }
+                    else if (context.Role == ChatRole.User)
+                    {
+                        <BootstrapBlazor.Components.Card Style="background-color: #fde3cf">
+                            <HeaderTemplate>
+                                <BootstrapBlazor.Components.Avatar IsCircle="true"
+                                                                   IsIcon="true"
+                                                                   Size="BootstrapBlazor.Components.Size.ExtraSmall"
+                                                                   Icon="fa-solid fa-user"
+                                                                   Style="color: #f56a00; background-color:#fde3cf;" />
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Button OnClick="() => Clipboard.Default.SetTextAsync(context.NewContent)">Cpoy</Button>
-                            </TitleTemplate>
-                            <DescriptionTemplate>
+                            </HeaderTemplate>
+                            <BodyTemplate>
                                 <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
-                            </DescriptionTemplate>
-                        </ListItemMeta>
-                    </ListItem>
-                }
-                else
-                {
-                    <ListItem Style="background-color: #b1dbc7">
-                        <ListItemMeta>
-                            <TitleTemplate>
-                                <Avatar Icon="robot" Style="color: #1890ff; background-color: #b1dbc7"></Avatar>
+                            </BodyTemplate>
+                        </BootstrapBlazor.Components.Card>
+                    }
+                    else
+                    {
+                        <BootstrapBlazor.Components.Card Style="background-color: #b1dbc7">
+                            <HeaderTemplate>
+                                <BootstrapBlazor.Components.Avatar IsCircle="true"
+                                                                   IsIcon="true"
+                                                                   Size="BootstrapBlazor.Components.Size.ExtraSmall"
+                                                                   Icon="fa-solid fa-robot"
+                                                                   Style="color: #1890ff; background-color: #b1dbc7" />
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Text Strong>@context.Role</Text>
                                 <Divider Type="DirectionVHType.Vertical" />
                                 @context.CreateTime.ToLocalTime().ToString("yy-MM-dd HH:mm:ss")
                                 <Divider Type="DirectionVHType.Vertical" />
                                 <Button OnClick="() => Clipboard.Default.SetTextAsync(context.NewContent)">Cpoy</Button>
-                            </TitleTemplate>
-                            <DescriptionTemplate>
+                            </HeaderTemplate>
+                            <BodyTemplate>
                                 <BootstrapBlazor.Components.CherryMarkdown IsViewer="true" Value="@context.NewContent" />
-                            </DescriptionTemplate>
-                        </ListItemMeta>
-                    </ListItem>
-                }
-            </ChildContent>
-            <Footer>
-                <TextArea ShowCount MaxLength="1000" AutoSize Placeholder="请输入问题" AllowClear="true" @bind-Value="@ProblemText" />
-                <Button Type="@ButtonType.Primary" OnClick="@GetAnswer">提问</Button>
-                <Button Danger Type="@ButtonType.Primary" OnClick="@_gptSDK.ResetMeaages">重置</Button>
-                <!-- <Button Type="@ButtonType.Primary" OnClick="@Click">开始</Button>
-                <Button Type="@ButtonType.Primary" OnClick="@Stop">停止</Button>
-                <p>@RecognitionText</p> -->
-                <button @ref="myrefA" style="background:transparent; border-width:0px; outline:none; width:1px; height:1px;"></button>
-                <button @ref="myrefB" style="background:transparent; border-width:0px; outline:none; width:1px; height:1px;"></button>
-            </Footer>
-        </AntList>
+                            </BodyTemplate>
+                        </BootstrapBlazor.Components.Card>
+                    }
+                </BodyTemplate>
+                <FooterTemplate>
+                    <div>
+                        <TextArea ShowCount MaxLength="1000" AutoSize Placeholder="请输入问题" AllowClear="true" @bind-Value="@ProblemText" />
+                        <Button Type="@ButtonType.Primary" OnClick="@GetAnswer">提问</Button>
+                        <Button Danger Type="@ButtonType.Primary" OnClick="@_gptSDK.ResetMeaages">重置</Button>
+                        <!-- <Button Type="@ButtonType.Primary" OnClick="@Click">开始</Button>
+                        <Button Type="@ButtonType.Primary" OnClick="@Stop">停止</Button>
+                        <p>@RecognitionText</p> -->
+                    </div>
+                </FooterTemplate>
+            </BootstrapBlazor.Components.ListView>
+        </Content>
         <!-- <TextArea ReadOnly AutoSize @bind-Value="@AnswerText"></TextArea> -->
-    </Spin>
-</div>
+    </Layout>
+</Spin>
