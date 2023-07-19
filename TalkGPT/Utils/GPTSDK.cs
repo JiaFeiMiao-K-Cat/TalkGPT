@@ -54,8 +54,10 @@ namespace TalkGPT.Utils
         public async Task<string> Answer(string prompt)
         {
             Messages.Add(new NewChatMessage(ChatRole.User, prompt));
-            //Messages.Add(new NewChatMessage(ChatRole.Assistant, prompt));
-            //return prompt;
+#if DEBUG
+            Messages.Add(new NewChatMessage(ChatRole.Assistant, prompt));
+            return prompt;
+#endif
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {
                 Temperature = _settings.SDKSettings.Temperature,
@@ -75,15 +77,14 @@ namespace TalkGPT.Utils
                 );
             string answer = response.Value.Choices[0].Message.Content;
             Messages.Add(new NewChatMessage(ChatRole.Assistant, answer));
-#if DEBUG
-            return JsonSerializer.Serialize(response, new JsonSerializerOptions
+
+            /*return JsonSerializer.Serialize(response, new JsonSerializerOptions
             {
                 WriteIndented = true,
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.All)
-            });
-#else
+            });*/
+
             return response.Value.Choices[0].Message.Content;
-#endif
         }
     }
     public class ChatArchive

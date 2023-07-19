@@ -10,7 +10,7 @@
 <style></style>
 
 <Spin Spinning="@loading">
-    <Layout Style="height:96vh">
+    <Layout Style="height: calc(100vh - 96px);">
         <Content>
             <BootstrapBlazor.Components.ListView Items="@_gptSDK.Messages" TItem="NewChatMessage" class="newcard">
                 <BodyTemplate>
@@ -83,13 +83,9 @@
                         <TextArea ShowCount MaxLength="1000" AutoSize Placeholder="请输入问题" AllowClear="true" @bind-Value="@ProblemText" />
                         <Button Type="@ButtonType.Primary" OnClick="@GetAnswer">提问</Button>
                         <Button Danger Type="@ButtonType.Primary" OnClick="@_gptSDK.ResetMeaages">重置</Button>
-                        <!-- <Button Type="@ButtonType.Primary" OnClick="@Click">开始</Button>
-                        <Button Type="@ButtonType.Primary" OnClick="@Stop">停止</Button>
-                        <p>@RecognitionText</p> -->
                     </div>
                 </FooterTemplate>
             </BootstrapBlazor.Components.ListView>
         </Content>
-        <!-- <TextArea ReadOnly AutoSize @bind-Value="@AnswerText"></TextArea> -->
     </Layout>
 </Spin>

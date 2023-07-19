@@ -1,34 +1,14 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">TalkGPT</a>
-        <Button Class="navbar-toggler" OnClick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </Button>
-    </div>
-</div>
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="settings">
-                <span class="oi oi-cog" aria-hidden="true"></span> Settings
-            </NavLink>
-        </div>
-    </nav>
-</div>
-
-@code {
-    private bool collapseNavMenu = false;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}
+﻿<Menu Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"})>
+    <MenuItem Key="1"
+              RouterLink="" 
+              RouterMatch="NavLinkMatch.All">
+        <Icon Type="home" Theme="outline" />
+        <span class="nav-text">Home</span>
+    </MenuItem>
+    <MenuItem Key="2"
+              RouterLink="settings"
+              RouterMatch="NavLinkMatch.All">
+        <Icon Type="setting" Theme="outline" />
+        <span class="nav-text">Settings</span>
+    </MenuItem>
+</Menu>

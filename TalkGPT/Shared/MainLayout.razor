@@ -1,13 +1,41 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <Layout>
+        <Header Style="height=64px">
+            <Text Keyboard Style="font-size:2em;">TalkGPT</Text>
+            @if (collapsed)
+            {
+                <Button Icon="@IconType.Outline.MenuUnfold" OnClick="toggle" Ghost/>
+            }
+            else
+            {
+                <Button Icon="@IconType.Outline.MenuFold" OnClick="toggle" Ghost/>
+            }
+        </Header>
+        <Layout>
+            <Sider Breakpoint="@BreakpointType.Lg"
+                    CollapsedWidth="0"
+                    NoTrigger
+                    @bind-Collapsed=@collapsed>
+                <NavMenu />
+            </Sider>
+            <Layout>
+                <Content>
+                    <article style="padding: 16px;">
+                        @Body
+                    </article>
+                </Content>
+            </Layout>
+        </Layout>
+    </Layout>
 </div>
+
+@code {
+    bool collapsed;
+
+    void toggle()
+    {
+        collapsed = !collapsed;
+    }
+}
