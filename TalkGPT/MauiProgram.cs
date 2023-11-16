@@ -4,6 +4,7 @@ using TalkGPT.Utils;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using System.Diagnostics;
+using Microsoft.Maui.Storage;
 //using TalkGPT.Platforms;
 
 namespace TalkGPT;

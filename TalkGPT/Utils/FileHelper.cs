@@ -6,6 +6,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Microsoft.Maui.Storage;
 
 namespace TalkGPT.Utils
 {
